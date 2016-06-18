@@ -1,0 +1,85 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Planer_studenta.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+
+    <!--LayoutRoot contains the root grid where all other page content is placed-->
+    <Grid x:Name="LayoutRoot" Loaded="LayoutRoot_Loaded_1">
+        <phone:Panorama Title="ustawienia">
+            <phone:Panorama.Background>
+                <ImageBrush ImageSource="/Assets/background.jpg" Stretch="UniformToFill"/>
+            </phone:Panorama.Background>
+
+            <phone:PanoramaItem Header="widok i funkcje">
+                <Grid>
+                    <ScrollViewer>
+                        <StackPanel>
+                            <TextBlock Padding="11,10,0,0">Wielkość bloczków</TextBlock>
+                            <toolkit:ListPicker Margin="11,-7,11,15" x:Name="HeigthMultiplierListPicker">
+                                <toolkit:ListPickerItem>Kompaktowe</toolkit:ListPickerItem>
+                                <toolkit:ListPickerItem>Zwykłe</toolkit:ListPickerItem>
+                                <toolkit:ListPickerItem>Duże</toolkit:ListPickerItem>
+                            </toolkit:ListPicker>
+
+                            <TextBlock Padding="11,10,0,0">Start dnia</TextBlock>
+                            <toolkit:TimePicker Margin="0,-10,0,0" Value="7:15" x:Name="DayStartTimePicker" ValueStringFormat="{}{0:t}"></toolkit:TimePicker>
+
+                            <CheckBox x:Name="AutoDayStartCheckBox" Checked="AutoDayStartCheckBox_Checked" Unchecked="AutoDayStartCheckBox_Unchecked">Start dnia automatycznie</CheckBox>
+
+                            <CheckBox x:Name="JakiTydzienIntegrationCheckBox">Integracja z JakiTydzien.pl</CheckBox>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </phone:PanoramaItem>
+
+            <phone:PanoramaItem Header="widoczne dni">
+                <Grid>
+                    <ScrollViewer>
+                        <StackPanel>
+                            <CheckBox x:Name="ShowMoCheckBox" IsChecked="True">poniedziałek</CheckBox>
+                            <CheckBox x:Name="ShowTuCheckBox" IsChecked="True">wtorek</CheckBox>
+                            <CheckBox x:Name="ShowWeCheckBox" IsChecked="True">środa</CheckBox>
+                            <CheckBox x:Name="ShowThCheckBox" IsChecked="True">czwartek</CheckBox>
+                            <CheckBox x:Name="ShowFrCheckBox" IsChecked="True">piątek</CheckBox>
+                            <CheckBox x:Name="ShowSaCheckBox" IsChecked="True">sobota</CheckBox>
+                            <CheckBox x:Name="ShowSuCheckBox" IsChecked="True">niedziela</CheckBox>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </phone:PanoramaItem>
+
+            <phone:PanoramaItem Header="dane planu">
+                <Grid>
+                    <StackPanel>
+                        <TextBlock FontSize="16" Foreground="#FFC9C8C8">Ostatnia modyfikacja planu</TextBlock>
+                        <TextBlock FontSize="28" x:Name="LastModifiedTextBlock">00-00-0000 00:00:00</TextBlock>
+
+                        <Rectangle Height="15"></Rectangle>
+
+                        <TextBlock FontSize="16" Foreground="#FFC9C8C8">Łączna ilość zajęć</TextBlock>
+                        <TextBlock FontSize="28" x:Name="FileCountTextBlock">0</TextBlock>
+                    </StackPanel>
+                    <Grid VerticalAlignment="Bottom">
+                        <Button x:Name="ClearDataButton" Click="ClearDataButton_Click_1">wyczyść plan</Button>
+                    </Grid>
+                </Grid>
+            </phone:PanoramaItem>
+        </phone:Panorama>
+    </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" x:Name="Toolbar">
+            <shell:ApplicationBarIconButton x:Name="SaveButton" IconUri="/Assets/AppBar/save.png" Text="Zapisz" Click="SaveButton_Click"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>

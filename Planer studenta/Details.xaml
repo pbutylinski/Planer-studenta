@@ -1,0 +1,89 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Planer_studenta.Details"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="False">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent" Loaded="LayoutRoot_Loaded_1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="/Assets/background.jpg" Stretch="UniformToFill" Grid.RowSpan="2"/>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="0,0,0,28" Tap="StackPanel_Tap">
+            <Rectangle x:Name="ColorRectangle" Height="20" Fill="Red"></Rectangle>
+            <TextBlock x:Name="NameTopTextBlock" Text="Nazwa przedmiotu" Margin="12,0,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <ScrollViewer>
+                <StackPanel>
+                    <StackPanel x:Name="NameStackPanel" Visibility="Collapsed">
+                        <TextBlock FontSize="16" Foreground="#FFC9C8C8">Nazwa</TextBlock>
+                        <TextBlock x:Name="NameTextBlock" TextWrapping="Wrap" FontSize="28">Analiza matematyczna 2.3A</TextBlock>
+
+                        <Rectangle Height="15"></Rectangle>
+                        <Rectangle Height="1">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White" Offset="0"/>
+                                    <GradientStop Color="Transparent" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle Height="15"></Rectangle>
+                    </StackPanel>
+
+                    <TextBlock FontSize="16" Foreground="#FFC9C8C8">Dzień</TextBlock>
+                    <TextBlock x:Name="DayTextBlock" TextWrapping="Wrap" FontSize="28">Poniedziałek</TextBlock>
+
+                    <Rectangle Height="15"></Rectangle>
+
+                    <TextBlock FontSize="16" Foreground="#FFC9C8C8">Godziny trwania</TextBlock>
+                    <TextBlock x:Name="HoursTextBlock" TextWrapping="Wrap" FontSize="28">7:15 - 9:00 (1:45 godz.)</TextBlock>
+
+                    <Rectangle Height="15"></Rectangle>
+
+                    <TextBlock FontSize="16" Foreground="#FFC9C8C8">Miejsce</TextBlock>
+                    <TextBlock x:Name="LocationTextBlock" TextWrapping="Wrap" FontSize="28">205 A-1</TextBlock>
+
+                    <Rectangle Height="15"></Rectangle>
+
+                    <TextBlock FontSize="16" Foreground="#FFC9C8C8">Osoba prowadząca</TextBlock>
+                    <TextBlock x:Name="LecturerTextBlock" TextWrapping="Wrap" FontSize="28">mgr. inż. Jan Kowalski</TextBlock>
+
+                    <Rectangle Height="15"></Rectangle>
+
+                    <TextBlock FontSize="16" Foreground="#FFC9C8C8">Powtarzanie</TextBlock>
+                    <TextBlock x:Name="OccurenceTextBlock" TextWrapping="Wrap" FontSize="28">Tydzień parzysty</TextBlock>
+
+                    <Rectangle Height="15"></Rectangle>
+
+                    <TextBlock FontSize="16" Foreground="#FFC9C8C8">Rodzaj zajęć</TextBlock>
+                    <TextBlock x:Name="TypeTextBlock" TextWrapping="Wrap" FontSize="28">Wykład</TextBlock>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" x:Name="Toolbar">
+            <shell:ApplicationBarIconButton  x:Name="EditButton" IconUri="/Assets/AppBar/edit.png" Text="Edytuj" Click="EditButton_Click_1"/>
+            <shell:ApplicationBarIconButton x:Name="DeleteButton" Text="Usuń" Click="DeleteButton_Click_1" IconUri="/Toolkit.Content/ApplicationBar.Delete.png"></shell:ApplicationBarIconButton>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>

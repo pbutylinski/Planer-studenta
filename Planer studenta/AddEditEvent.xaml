@@ -1,0 +1,102 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Planer_studenta.AddEditEvent"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.Opacity="0"
+    shell:SystemTray.BackgroundColor="#FF2A3845">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="/Assets/background.jpg" Stretch="UniformToFill" Grid.RowSpan="2"/>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="PLAN ZAJĘĆ" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="TitleTextBlock" Text="dodaj nowe" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" Loaded="ContentPanel_Loaded">
+            <ScrollViewer>
+                <StackPanel>
+                    <TextBlock Padding="11,0,0,0">Nazwa zajęć</TextBlock>
+                    <TextBox Margin="0,-10,0,0" x:Name="NameTextBox" InputScope="Text" LostFocus="NameTextBox_LostFocus_1"></TextBox>
+
+                    <TextBlock Padding="11,10,0,0">Skrócona nazwa (do 25 znaków)</TextBlock>
+                    <TextBox Margin="0,-10,0,0" x:Name="ShortNameTextBox" InputScope="Text" MaxLength="25"></TextBox>
+
+                    <TextBlock Padding="11,10,0,0">Miejsce (sala/budynek)</TextBlock>
+                    <TextBox Margin="0,-10,0,0" x:Name="LocationTextBox"></TextBox>
+
+                    <TextBlock Padding="11,10,0,0">Dzień tygodnia</TextBlock>
+                    <toolkit:ListPicker Margin="11,-7,11,11" x:Name="DayOfWeekListPicker">
+                        <sys:String>Poniedziałek</sys:String>
+                        <sys:String>Wtorek</sys:String>
+                        <sys:String>Środa</sys:String>
+                        <sys:String>Czwartek</sys:String>
+                        <sys:String>Piątek</sys:String>
+                        <sys:String>Sobota</sys:String>
+                        <sys:String>Niedziela</sys:String>
+                        <toolkit:ListPicker.FullModeItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" FontSize="40"/>
+                            </DataTemplate>
+                        </toolkit:ListPicker.FullModeItemTemplate>
+                    </toolkit:ListPicker>
+
+                    <TextBlock Padding="11,10,0,0">Powtarzanie</TextBlock>
+                    <toolkit:ListPicker Margin="11,-7,11,11" x:Name="OccurenceListPicker">
+                        <toolkit:ListPickerItem Content="Co tydzień"></toolkit:ListPickerItem>
+                        <toolkit:ListPickerItem Content="Co tydzień parzysty"></toolkit:ListPickerItem>
+                        <toolkit:ListPickerItem Content="Co tydzień nieparzysty"></toolkit:ListPickerItem>
+                    </toolkit:ListPicker>
+
+                    <TextBlock Padding="11,10,0,0">Rozpoczęcie zajęć</TextBlock>
+                    <toolkit:TimePicker Margin="0,-10,0,0" x:Name="StartTimePicker" ValueStringFormat="{}{0:t}" Value="7:15"></toolkit:TimePicker>
+                    
+                    <TextBlock Padding="11,10,0,0">Zakończenie zajęć</TextBlock>
+                    <toolkit:TimePicker Margin="0,-10,0,0" x:Name="EndTimePicker" ValueStringFormat="{}{0:t}" Value="9:00"></toolkit:TimePicker>
+
+                    <TextBlock Padding="11,10,0,0">Rodzaj</TextBlock>
+                    <toolkit:ListPicker Margin="11,-7,11,11" x:Name="TypeListPicker">
+                        <toolkit:ListPickerItem Content="Wykład"></toolkit:ListPickerItem>
+                        <toolkit:ListPickerItem Content="Ćwiczenia"></toolkit:ListPickerItem>
+                        <toolkit:ListPickerItem Content="Laboratorium"></toolkit:ListPickerItem>
+                        <toolkit:ListPickerItem Content="Seminarium"></toolkit:ListPickerItem>
+                        <toolkit:ListPickerItem Content="Inne"></toolkit:ListPickerItem>
+                    </toolkit:ListPicker>
+
+                    <TextBlock Padding="11,10,0,0">Osoba prowadząca</TextBlock>
+                    <TextBox Margin="0,-10,0,0" x:Name="LecturerTextBox" InputScope="Text"></TextBox>
+
+                    <!-- filler -->
+                    <Rectangle Height="40"></Rectangle>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" x:Name="Toolbar">
+            <shell:ApplicationBarIconButton x:Name="SaveButton" IconUri="/Assets/AppBar/save.png" Text="Zapisz" Click="SaveButton_Click"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>
